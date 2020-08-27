@@ -12,6 +12,8 @@ from app.component.db import EntityModel as Base, db
 
 __author__ = 'Allen7D'
 
+from app.models.identity import Identity
+
 
 class User(Base):
     '''用户'''
@@ -32,23 +34,23 @@ class User(Base):
 
     def keys(self):
         self.hide('_password', '_avatar', 'extend')
-        self.append('username', 'mobile', 'email', 'openid', 'unionid', 'avatar', 'address', 'auth_scope')
+        self.append('username', 'mobile', 'email', 'openid', 'unionid', 'avatar')
         return self.fields
 
-    # @property
-    # def username(self):
-    #     identity = Identity.get(user_id=self.id, type=ClientTypeEnum.USERNAME.value)
-    #     return identity.identifier if identity else None
-    #
-    # @property
-    # def mobile(self):
-    #     identity = Identity.get(user_id=self.id, type=ClientTypeEnum.MOBILE.value)
-    #     return identity.identifier if identity else None
-    #
-    # @property
-    # def email(self):
-    #     identity = Identity.get(user_id=self.id, type=ClientTypeEnum.EMAIL.value)
-    #     return identity.identifier if identity else None
+    @property
+    def username(self):
+        identity = Identity.get(user_id=self.id, type=ClientTypeEnum.USERNAME.value)
+        return identity.identifier if identity else None
+
+    @property
+    def mobile(self):
+        identity = Identity.get(user_id=self.id, type=ClientTypeEnum.MOBILE.value)
+        return identity.identifier if identity else None
+
+    @property
+    def email(self):
+        identity = Identity.get(user_id=self.id, type=ClientTypeEnum.EMAIL.value)
+        return identity.identifier if identity else None
 
     @property
     def avatar(self):

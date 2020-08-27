@@ -33,7 +33,7 @@ class LoginVerifyService():
         record_login_log(identity['uid'], message='登录成功')
         token = generate_auth_token(identity['uid'],
                                     type.value,
-                                    identity['scope'],
+
                                     expiration)
         return token
 
@@ -67,7 +67,8 @@ class LoginVerifyService():
                                        e=IdentityException(msg='该用户名未注册'))
         identity.check_password(password, e=AuthFailed(msg='密码错误'))
         user = User.get(id=identity.user_id)
-        return {'uid': user.id, 'scope': user.auth_scope}
+        # return {'uid': user.id, 'scope': user.auth_scope}
+        return {'uid': user.id}
 
     @staticmethod
     def verify_by_email(email, password):
@@ -75,7 +76,8 @@ class LoginVerifyService():
                                        e=IdentityException(msg='该邮箱未注册'))
         identity.check_password(password, e=AuthFailed(msg='密码错误'))
         user = User.get(id=identity.user_id)
-        return {'uid': user.id, 'scope': user.auth_scope}
+        # return {'uid': user.id, 'scope': user.auth_scope}
+        return {'uid': user.id}
 
     @staticmethod
     def verify_by_mobile(mobile, password):
@@ -83,7 +85,8 @@ class LoginVerifyService():
                                        e=IdentityException(msg='该手机号未注册'))
         identity.check_password(password, e=AuthFailed(msg='密码错误'))
         user = User.get(id=identity.user_id)
-        return {'uid': user.id, 'scope': user.auth_scope}
+        # return {'uid': user.id, 'scope': user.auth_scope}
+        return {'uid': user.id}
 
     # @staticmethod
     # def verify_by_wx_mina(code, *args):

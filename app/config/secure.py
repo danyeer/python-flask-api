@@ -7,11 +7,12 @@ __author__ = 'Allen7D'
 DEBUG = False
 
 # Token 配置
-SECRET_KEY = 'But you, Lord , are a shield around me, my glory, the One who lifts my head high.'  # 加密
+SECRET_KEY = 'wang'  # 加密
 TOKEN_EXPIRATION = 30 * 24 * 3600  # 有效期: 30天
 
 # MySQL 数据库配置
-SQLALCHEMY_DATABASE_URI = 'mysql+cymysql://root:ddzb1234@192.168.1.82:3306/pyflask?charset=utf8'
+PASSWORD = '@5503203Pp'
+SQLALCHEMY_DATABASE_URI = 'mysql+cymysql://root:{0}@129.211.186.246:3306/pyflask?charset=utf8'.format(PASSWORD)
 SQLALCHEMY_ENCODING = 'utf-8'
 SQLALCHEMY_TRACK_MODIFICATIONS = False  # 屏蔽 sql alchemy 的 FSADeprecationWarning
 
